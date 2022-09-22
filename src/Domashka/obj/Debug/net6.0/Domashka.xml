@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doc>
+<assembly><name>Domashka</name></assembly>
+<members>
+<member name="T:Domashka.Say.Person">
+ <summary> A person with many different field types </summary>
+</member>
+<member name="T:Domashka.Say.FavoriteColor">
+ <summary> Finite list of Colors </summary>
+</member>
+<member name="M:Domashka.Say.nothing``1(``0)">
+<summary>
+ I do nothing
+</summary>
+</member>
+<member name="M:Domashka.Say.add(System.Int32,System.Int32)">
+ <summary>
+ Adds two integers <paramref name="a"/> and <paramref name="b"/> and returns the result.
+ </summary>
+
+ <remarks>
+ This usually contains some really important information that you'll miss if you don't read the docs.
+ </remarks>
+
+ <param name="a">An integer.</param>
+ <param name="b">An integer.</param>
+
+ <returns>
+ The sum of two integers.
+ </returns>
+
+ <exceptions cref="M:System.OverflowException">Thrown when one parameter is max
+ and the other is greater than 0.</exceptions>
+</member>
+<member name="M:Domashka.Say.helloPerson(Domashka.Say.Person)">
+ <summary>Says hello to a specific person</summary>
+</member>
+<member name="T:Domashka.Say">
+ <summary> Initial module </summary>
+</member>
+</members>
+</doc>
