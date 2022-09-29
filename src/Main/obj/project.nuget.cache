@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "VzrM+PxNssApdYumQx5iqVtUV2o/feeU2aZDdAGS7SvR043sdBYDrejFUrPiGafjHBza/DKIKCG1FhJs6twkAg==",
+  "success": true,
+  "projectFilePath": "C:\\Coding\\Domashka\\Main\\Main.fsproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\ASUStec\\.nuget\\packages\\fsharp.core\\6.0.6\\fsharp.core.6.0.6.nupkg.sha512"
+  ],
+  "logs": []
+}
