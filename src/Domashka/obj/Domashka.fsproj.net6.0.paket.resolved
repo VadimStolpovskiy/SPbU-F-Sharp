@@ -1,4 +1,0 @@
-FSharp.Core,6.0,Direct,Main,false,true,false,true
-Microsoft.Build.Tasks.Git,1.1,Transitive,Main,true,true,false,true
-Microsoft.SourceLink.Common,1.1,Transitive,Main,true,true,false,true
-Microsoft.SourceLink.GitHub,1.1,Direct,Main,true,true,false,true
