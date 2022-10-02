@@ -1,6 +1,6 @@
-# Domashka
+# Homework
 
-[Enter useful description for Domashka]
+[Enter useful description for Homework]
 
 ---
 
@@ -8,14 +8,14 @@
 
 GitHub Actions |
 :---: |
-[![GitHub Actions](https://github.com/MyGithubUsername/Domashka/workflows/Build%20master/badge.svg)](https://github.com/MyGithubUsername/Domashka/actions?query=branch%3Amaster) |
-[![Build History](https://buildstats.info/github/chart/MyGithubUsername/Domashka)](https://github.com/MyGithubUsername/Domashka/actions?query=branch%3Amaster) |
+[![GitHub Actions](https://github.com/MyGithubUsername/Homework/workflows/Build%20master/badge.svg)](https://github.com/MyGithubUsername/Homework/actions?query=branch%3Amaster) |
+[![Build History](https://buildstats.info/github/chart/MyGithubUsername/Homework)](https://github.com/MyGithubUsername/Homework/actions?query=branch%3Amaster) |
 
 ## NuGet 
 
 Package | Stable | Prerelease
 --- | --- | ---
-Domashka | [![NuGet Badge](https://buildstats.info/nuget/Domashka)](https://www.nuget.org/packages/Domashka/) | [![NuGet Badge](https://buildstats.info/nuget/Domashka?includePreReleases=true)](https://www.nuget.org/packages/Domashka/)
+Homework | [![NuGet Badge](https://buildstats.info/nuget/Homework)](https://www.nuget.org/packages/Homework/) | [![NuGet Badge](https://buildstats.info/nuget/Homework?includePreReleases=true)](https://www.nuget.org/packages/Homework/)
 
 ---
 
