@@ -33,7 +33,7 @@ module TestCase =
                   let naive = exp 2 1
                   let quick = quickExp 2 1
 
-                  if naive <> quick then failwith "Naive is not equal with quick"
+                  if naive <> quick then failwith "Naive is not equal to quick"
 
                   Expect.equal naive 2 "2 ** 1 = 2"
 
@@ -42,7 +42,7 @@ module TestCase =
                   let naive = exp 0 10
                   let quick = quickExp 0 10
 
-                  if naive <> quick then failwith "Naive is not equal with quick"
+                  if naive <> quick then failwith "Naive is not equal to quick"
 
                   Expect.equal naive 0 "0 ** 10 = 0"
 
@@ -51,7 +51,7 @@ module TestCase =
                   let naive = exp -2 10
                   let quick = quickExp -2 10
 
-                  if naive <> quick then failwith "Naive is not equal with quick"
+                  if naive <> quick then failwith "Naive is not equal to quick"
 
                   Expect.equal naive 1024 "-2 ** 10 = 1024"
 
@@ -60,7 +60,7 @@ module TestCase =
                   let naive = exp 2 -1
                   let quick = quickExp 2 -1
 
-                  if naive <> quick then failwith "Naive is not equal with quick"
+                  if naive <> quick then failwith "Naive is not equal to quick"
 
                   Expect.equal naive 0.5 "2 ** -1 = 0.5"
 
@@ -69,7 +69,7 @@ module TestCase =
                   let naive = exp 11 11
                   let quick = quickExp 11 11
 
-                  if naive <> quick then failwith "Naive is not equal with quick"
+                  if naive <> quick then failwith "Naive is not equal to quick"
 
                   Expect.equal naive 285311670611.0 "11 ** 11 = 285311670611"
 
