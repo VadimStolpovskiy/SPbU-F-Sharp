@@ -1,8 +1,6 @@
 namespace Homework.Tests
 
-open System
 open Expecto
-open Homework
 open Homework.Task1
 
 module TestCase =
