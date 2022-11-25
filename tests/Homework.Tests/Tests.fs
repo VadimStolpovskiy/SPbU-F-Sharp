@@ -11,6 +11,8 @@ module TestCases =
         testList
             "samples"
 
+            // №1, №2
+
             [ testProperty "Exponentiation | Naive and quick should return equal results"
               <| fun x (y: int) ->
                   if x <> 0 && y <> 0 then
@@ -81,18 +83,42 @@ module TestCases =
 
                   Expect.equal naive quick "11 ** 11 = 285311670611"
 
-              testCase "Difference | Random numbers"
+              testCase "Exponentiation | Bytes"
               <| fun _ ->
-                  let subject = diff [| 43; -689; 3; 0; 573; 93 |]
+                  let naive = exp 2uy 7
+                  let quick = quickExp 2uy 7
 
-                  Expect.equal subject 1262 "573 - (-689) = 1262"
+                  Expect.equal naive quick "2 ** 7 = 128"
 
-              testProperty "Difference | One number"
-              <| fun x ->
-                  let expected = 0
-                  let actual = diff [| x |]
+              testCase "Exponentiation | Ints"
+              <| fun _ ->
+                  let naive = exp 2 30
+                  let quick = quickExp 2 30
 
-                  Expect.equal expected actual "Obvious"
+                  Expect.equal naive quick "2 ** 30 = 1 073 741 824"
+
+              testCase "Exponentiation | Floats"
+              <| fun _ ->
+                  let naive = exp 2.0 60
+                  let quick = quickExp 2.0 60
+
+                  Expect.equal naive quick "2 ** 60 = 1,15 × 10^18"
+
+              // №3
+
+              testCase "Difference | Ints"
+              <| fun _ ->
+                  let actual = diff [| 43; -689; 3; 0; 573; 93 |]
+
+                  Expect.equal actual 1262 "573 - (-689) = 1262"
+
+              testCase "Difference | Floats"
+              <| fun _ ->
+                  let actual = diff [| 0.1; -49.3; 9.7; -293.5; -4.4; 344.5 |]
+
+                  Expect.equal actual 638.0 "344.5 - (-293.5) = 638"
+
+              // №4
 
               testCase "Odds"
               <| fun _ ->

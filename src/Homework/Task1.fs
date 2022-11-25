@@ -1,30 +1,32 @@
 ﻿module Homework.Task1
 
 // №1
-let exp value pow =
+let inline exp value pow =
 
-    let mutable result = 1.0
+    let mutable result = LanguagePrimitives.GenericOne
 
     for i = 1 to abs pow do
         result <- value * result
 
-    if pow > 0 then result else 1.0 / result
+    if pow > 0 then result else LanguagePrimitives.GenericOne / result
 
 // №2
-let rec quickExp value pow =
+let inline quickExp value pow =
 
-    let result =
-        if pow = 0 then
-            1.0
-        else
-            let half = quickExp value (abs pow / 2)
+    let rec loop pow =
+        let result =
+            if pow = 0 then
+                LanguagePrimitives.GenericOne
+            else
+                let half = loop (abs pow / 2)
 
-            if pow % 2 = 0 then half * half else value * half * half
+                if pow % 2 = 0 then half * half else value * half * half
 
-    if pow > 0 then result else 1.0 / result
+        if pow > 0 then result else LanguagePrimitives.GenericOne / result
+    loop pow
 
 // №3
-let diff (arr: int array) =
+let diff (arr: float array) =
 
     if arr.Length = 0 then
         failwith "The array is empty"
