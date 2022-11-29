@@ -8,7 +8,10 @@ let inline exp value pow =
     for i = 1 to abs pow do
         result <- value * result
 
-    if pow > 0 then result else LanguagePrimitives.GenericOne / result
+    if pow > 0 then
+        result
+    else
+        LanguagePrimitives.GenericOne / result
 
 // №2
 let inline quickExp value pow =
@@ -22,11 +25,15 @@ let inline quickExp value pow =
 
                 if pow % 2 = 0 then half * half else value * half * half
 
-        if pow > 0 then result else LanguagePrimitives.GenericOne / result
+        if pow > 0 then
+            result
+        else
+            LanguagePrimitives.GenericOne / result
+
     loop pow
 
 // №3
-let diff (arr: float array) =
+let inline diff (arr: ^a array) =
 
     if arr.Length = 0 then
         failwith "The array is empty"
@@ -43,4 +50,7 @@ let diff (arr: float array) =
 // №4
 let odds a b =
 
-    if a % 2 = 1 then [| a..2..b |] else [| a + 1 .. 2 .. b |]
+    if abs (a) % 2 = 1 then
+        [| a..2..b |]
+    else
+        [| a + 1 .. 2 .. b |]
