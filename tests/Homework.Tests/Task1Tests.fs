@@ -39,8 +39,8 @@ module TestCases =
               <| fun (x: float) y ->
                   if
                       (x = 0 && y <= 0)
-                      || System.Double.IsNaN x
-                      || System.Double.IsInfinity x
+                      || Double.IsNaN x
+                      || Double.IsInfinity x
                       || x > 3.4e+38
                       || x < 1.2e-38
                   then
@@ -68,8 +68,8 @@ module TestCases =
               testProperty "Exponentiation | Product of Powers (Floats)"
               <| fun (a: float) m n ->
                   if
-                      System.Double.IsInfinity a
-                      || System.Double.IsNaN a
+                      Double.IsInfinity a
+                      || Double.IsNaN a
                       || a > 3.4e+38
                       || a < 1.2e-38
                   then
@@ -144,6 +144,28 @@ module TestCases =
 
               // №3
 
+              testProperty "Difference | Max - Min (Ints)"
+              <| fun (arr : int array) ->
+                  if arr.Length = 0 then
+                      true
+                  else
+                    let expected = Array.max arr - Array.min arr
+                    let actual = diff arr
+
+                    actual = expected
+
+              testProperty "Difference | Max - Min (Floats)"
+              <| fun (arr : float array) ->
+                  let arr' = Array.filter (fun elem -> not (Double.IsInfinity elem) && not (Double.IsNaN elem)) arr
+
+                  if arr'.Length = 0 then
+                      true
+                  else
+                    let expected = Array.max arr' - Array.min arr'
+                    let actual = diff arr'
+
+                    expected = actual
+
               testProperty "Difference | One element"
               <| fun x ->
                   let expected = x - x
@@ -174,6 +196,21 @@ module TestCases =
 
               // №4
 
+              testProperty "Odds | Number of elements"
+              <| fun x y ->
+                   if x > y then
+                       true
+                   else
+                       let actual = odds x y
+                       let expected =
+
+                           if x % 2 = 0 && y % 2 = 0 then
+                               (y - x) / 2
+                           else
+                               (y - x) / 2 + 1
+
+                       actual.Length = expected
+
               testProperty "Odds | One element"
               <| fun x ->
                   let actual = odds x x
@@ -191,14 +228,12 @@ module TestCases =
                   let actual = odds -10 -1
                   let expected = [| -9; -7; -5; -3; -1 |]
 
-
                   Expect.equal actual expected "Result is not correct"
 
               testCase "Odds | Positive"
               <| fun _ ->
                   let actual = odds 1 10
                   let expected = [| 1; 3; 5; 7; 9 |]
-
 
                   Expect.equal actual expected "Result is not correct"
 
