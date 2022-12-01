@@ -37,19 +37,19 @@ module TestCases =
 
               testProperty "Exponentiation | Naive and quick should return equal results (Floats)"
               <| fun (x: float) y ->
-                  if
-                      (x = 0 && y <= 0)
-                      || Double.IsNaN x
-                      || Double.IsInfinity x
-                      || x > 3.4e+38
-                      || x < 1.2e-38
-                  then
+                  if x = 0 && y <= 0 then
                       Expect.isTrue true
                   else
                       let naive = exp x y
                       let quick = quickExp x y
 
-                      Expect.floatClose Accuracy.high naive quick
+                      if
+                          (Double.IsInfinity naive && Double.IsInfinity quick)
+                          || (Double.IsNaN naive && Double.IsNaN quick)
+                      then
+                          Expect.isTrue true
+                      else
+                          Expect.floatClose Accuracy.high naive quick
 
               testProperty "Exponentiation | Product of Powers (Bytes)"
               <| fun (a: byte) m n ->
@@ -64,18 +64,6 @@ module TestCases =
                       true
                   else
                       quickExp a m * quickExp a n = quickExp a (m + n)
-
-              testProperty "Exponentiation | Product of Powers (Floats)"
-              <| fun (a: float) m n ->
-                  if
-                      Double.IsInfinity a
-                      || Double.IsNaN a
-                      || a > 3.4e+38
-                      || a < 1.2e-38
-                  then
-                      Expect.isTrue true
-                  else
-                      Expect.floatClose Accuracy.high (quickExp a m * quickExp a n) (quickExp a (m + n))
 
               // Test cases
 
@@ -145,26 +133,28 @@ module TestCases =
               // №3
 
               testProperty "Difference | Max - Min (Ints)"
-              <| fun (arr : int array) ->
+              <| fun (arr: int array) ->
                   if arr.Length = 0 then
                       true
                   else
-                    let expected = Array.max arr - Array.min arr
-                    let actual = diff arr
+                      let expected = Array.max arr - Array.min arr
+                      let actual = diff arr
 
-                    actual = expected
+                      actual = expected
 
               testProperty "Difference | Max - Min (Floats)"
-              <| fun (arr : float array) ->
-                  let arr' = Array.filter (fun elem -> not (Double.IsInfinity elem) && not (Double.IsNaN elem)) arr
+              <| fun (arr: float array) ->
+                  let arr' =
+                      Array.filter (fun elem -> not (Double.IsInfinity elem)
+                                                && not (Double.IsNaN elem)) arr
 
                   if arr'.Length = 0 then
                       true
                   else
-                    let expected = Array.max arr' - Array.min arr'
-                    let actual = diff arr'
+                      let expected = Array.max arr' - Array.min arr'
+                      let actual = diff arr'
 
-                    expected = actual
+                      expected = actual
 
               testProperty "Difference | One element"
               <| fun x ->
@@ -198,18 +188,19 @@ module TestCases =
 
               testProperty "Odds | Number of elements"
               <| fun x y ->
-                   if x > y then
-                       true
-                   else
-                       let actual = odds x y
-                       let expected =
+                  if x > y then
+                      true
+                  else
+                      let actual = odds x y
 
-                           if x % 2 = 0 && y % 2 = 0 then
-                               (y - x) / 2
-                           else
-                               (y - x) / 2 + 1
+                      let expected =
 
-                       actual.Length = expected
+                          if x % 2 = 0 && y % 2 = 0 then
+                              (y - x) / 2
+                          else
+                              (y - x) / 2 + 1
+
+                      actual.Length = expected
 
               testProperty "Odds | One element"
               <| fun x ->
