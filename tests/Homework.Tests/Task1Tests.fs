@@ -145,8 +145,7 @@ module TestCases =
               testProperty "Difference | Max - Min (Floats)"
               <| fun (arr: float array) ->
                   let arr' =
-                      Array.filter (fun elem -> not (Double.IsInfinity elem)
-                                                && not (Double.IsNaN elem)) arr
+                      Array.filter (fun elem -> not (Double.IsInfinity elem) && not (Double.IsNaN elem)) arr
 
                   if arr'.Length = 0 then
                       true
