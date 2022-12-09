@@ -17,53 +17,30 @@ module TestCases =
 
             [ testProperty "Exponentiation | Naive and quick should return equal results (Bytes)"
               <| fun (x: byte) y ->
-                  if y < 0 then
-                      true
-                  else
-                      let naive = exp x y
-                      let quick = quickExp x y
+                  let naive = exp x y
+                  let quick = quickExp x y
 
-                      naive = quick
+                  naive = quick
 
               testProperty "Exponentiation | Naive and quick should return equal results (Ints)"
               <| fun (x: int) y ->
-                  if y < 0 then
-                      true
-                  else
-                      let naive = exp x y
-                      let quick = quickExp x y
+                  let naive = exp x y
+                  let quick = quickExp x y
 
-                      naive = quick
+                  naive = quick
 
               testProperty "Exponentiation | Naive and quick should return equal results (Floats)"
               <| fun (x: float) y ->
-                  if x = 0 && y <= 0 then
+                  let naive = exp x y
+                  let quick = quickExp x y
+
+                  if
+                      (Double.IsInfinity naive && Double.IsInfinity quick)
+                      || (Double.IsNaN naive && Double.IsNaN quick)
+                  then
                       Expect.isTrue true
                   else
-                      let naive = exp x y
-                      let quick = quickExp x y
-
-                      if
-                          (Double.IsInfinity naive && Double.IsInfinity quick)
-                          || (Double.IsNaN naive && Double.IsNaN quick)
-                      then
-                          Expect.isTrue true
-                      else
-                          Expect.floatClose Accuracy.high naive quick
-
-              testProperty "Exponentiation | Product of Powers (Bytes)"
-              <| fun (a: byte) m n ->
-                  if m < 0 || n < 0 then
-                      true
-                  else
-                      quickExp a m * quickExp a n = quickExp a (m + n)
-
-              testProperty "Exponentiation | Product of Powers (Ints)"
-              <| fun (a: int) m n ->
-                  if m < 0 || n < 0 then
-                      true
-                  else
-                      quickExp a m * quickExp a n = quickExp a (m + n)
+                      Expect.floatClose Accuracy.high naive quick
 
               // Test cases
 
@@ -101,13 +78,6 @@ module TestCases =
                   let quick = quickExp -2 10
 
                   Expect.equal naive quick "-2 ** 10 = 1024"
-
-              testCase "Exponentiation | Natural value, negative power"
-              <| fun _ ->
-                  let naive = exp 2 -1
-                  let quick = quickExp 2 -1
-
-                  Expect.equal naive quick "2 ** -1 = 0.5"
 
               testCase "Exponentiation | Bytes"
               <| fun _ ->
