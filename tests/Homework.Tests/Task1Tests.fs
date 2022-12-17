@@ -6,7 +6,7 @@ open Homework.Task1
 
 module TestCases =
 
-    [<Tests>]
+    //[<Tests>]
     let tests =
 
         testList
