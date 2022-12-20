@@ -1,6 +1,7 @@
 namespace Homework.Tests.Task2Tests
 
 open Expecto
+open FsCheck
 open Homework
 open Homework.ConsList
 open Homework.OOPList
@@ -24,6 +25,20 @@ module TestCases =
 
                   consListToList actual = expected
 
+              testProperty "Bubble sort ConsList<NormalFloat> | Comparison with system sort"
+              <| fun (lst: list<NormalFloat>) ->
+                  let expected = List.sort lst
+                  let actual = consBubbleSort (listToConsList lst)
+
+                  consListToList actual = expected
+
+              testProperty "Bubble sort ConsList<char> | Comparison with system sort"
+              <| fun (lst: list<char>) ->
+                  let expected = List.sort lst
+                  let actual = consBubbleSort (listToConsList lst)
+
+                  consListToList actual = expected
+
               testProperty "Bubble sort ConsList<string> | Comparison with system sort"
               <| fun (lst: list<string>) ->
                   let expected = List.sort lst
@@ -40,6 +55,20 @@ module TestCases =
 
               testProperty "Bubble sort OOPList<int> | Comparison with system sort"
               <| fun (lst: list<int>) ->
+                  let expected = List.sort lst
+                  let actual = oopBubbleSort (listToOOPList lst)
+
+                  OOPListToList actual = expected
+
+              testProperty "Bubble sort OOPList<NormalFloat> | Comparison with system sort"
+              <| fun (lst: list<NormalFloat>) ->
+                  let expected = List.sort lst
+                  let actual = oopBubbleSort (listToOOPList lst)
+
+                  OOPListToList actual = expected
+
+              testProperty "Bubble sort OOPList<char> | Comparison with system sort"
+              <| fun (lst: list<char>) ->
                   let expected = List.sort lst
                   let actual = oopBubbleSort (listToOOPList lst)
 
@@ -68,6 +97,20 @@ module TestCases =
 
                   consListToList actual = expected
 
+              testProperty "Quicksort ConsList<NormalFloat> | Comparison with system sort"
+              <| fun (lst: list<NormalFloat>) ->
+                  let expected = List.sort lst
+                  let actual = consQuickSort (listToConsList lst)
+
+                  consListToList actual = expected
+
+              testProperty "Quicksort ConsList<char> | Comparison with system sort"
+              <| fun (lst: list<char>) ->
+                  let expected = List.sort lst
+                  let actual = consQuickSort (listToConsList lst)
+
+                  consListToList actual = expected
+
               testProperty "Quicksort ConsList<string> | Comparison with system sort"
               <| fun (lst: list<string>) ->
                   let expected = List.sort lst
@@ -89,6 +132,20 @@ module TestCases =
 
                   OOPListToList actual = expected
 
+              testProperty "Quicksort OOPList<NormalFloat> | Comparison with system sort"
+              <| fun (lst: list<NormalFloat>) ->
+                  let expected = List.sort lst
+                  let actual = OOPQuickSort(listToOOPList lst)
+
+                  OOPListToList actual = expected
+
+              testProperty "Quicksort OOPList<char> | Comparison with system sort"
+              <| fun (lst: list<char>) ->
+                  let expected = List.sort lst
+                  let actual = OOPQuickSort(listToOOPList lst)
+
+                  OOPListToList actual = expected
+
               testProperty "Quicksort OOPList<string> | Comparison with system sort"
               <| fun (lst: list<string>) ->
                   let expected = List.sort lst
@@ -105,15 +162,8 @@ module TestCases =
 
               // №3. Concatenation
 
-              testProperty "Concat ConsList<int> | Comparison with system concat"
-              <| fun (lst1: list<int>) (lst2: list<int>) ->
-                  let expected = List.concat [ lst1; lst2 ]
-                  let actual = ConsList.concat (listToConsList lst1) (listToConsList lst2)
-
-                  consListToList actual = expected
-
-              testProperty "Concat ConsList<string> | Comparison with system concat"
-              <| fun (lst1: list<string>) (lst2: list<string>) ->
+              testProperty "Concat ConsList | Comparison with system concat"
+              <| fun lst1 lst2 ->
                   let expected = List.concat [ lst1; lst2 ]
                   let actual = ConsList.concat (listToConsList lst1) (listToConsList lst2)
 
@@ -126,15 +176,8 @@ module TestCases =
 
                   Expect.equal actual expected "Actual result is not Empty"
 
-              testProperty "Concat OOPList<int> | Comparison with system concat"
-              <| fun (lst1: list<int>) (lst2: list<int>) ->
-                  let expected = List.concat [ lst1; lst2 ]
-                  let actual = OOPList.concat (listToOOPList lst1) (listToOOPList lst2)
-
-                  OOPListToList actual = expected
-
-              testProperty "Concat OOPList<string> | Comparison with system concat"
-              <| fun (lst1: list<string>) (lst2: list<string>) ->
+              testProperty "Concat OOPList | Comparison with system concat"
+              <| fun lst1 lst2 ->
                   let expected = List.concat [ lst1; lst2 ]
                   let actual = OOPList.concat (listToOOPList lst1) (listToOOPList lst2)
 

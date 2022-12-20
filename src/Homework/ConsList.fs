@@ -12,7 +12,7 @@ let rec getLength lst =
 let rec consListToList lst =
     match lst with
     | Empty -> []
-    | Cons(hd, tl) -> [ hd ] @ consListToList tl
+    | Cons(hd, tl) -> hd :: consListToList tl
 
 let rec listToConsList lst =
     match lst with

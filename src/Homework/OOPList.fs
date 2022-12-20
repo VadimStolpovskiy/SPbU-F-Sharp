@@ -12,27 +12,25 @@ type NonEmptyList<'value>(head: 'value, tail: OOPList<'value>) =
 type EmptyList<'value>() =
     interface OOPList<'value>
 
-type IActor<'inType, 'outType> =
-    abstract Do: 'inType -> 'outType
-
 let rec getLength (lst: OOPList<'value>) =
     match lst with
     | :? EmptyList<'value> -> 0
     | :? NonEmptyList<'value> as lst -> getLength lst.Tail + 1
 
-let rec getHead (lst: OOPList<'value>) =
+let getHead (lst: OOPList<'value>) =
     match lst with
+    | :? EmptyList<'value> -> failwith "The input list was empty"
     | :? NonEmptyList<'value> as lst -> lst.Head
 
-let rec getTail (lst: OOPList<'value>) =
+let getTail (lst: OOPList<'value>) =
     match lst with
-    | :? EmptyList<'value> -> EmptyList() :> OOPList<'value>
+    | :? EmptyList<'value> -> failwith "The input list was empty"
     | :? NonEmptyList<'value> as lst -> lst.Tail
 
 let rec OOPListToList (lst: OOPList<'value>) =
     match lst with
     | :? EmptyList<'value> -> []
-    | :? NonEmptyList<'value> as lst -> [ lst.Head ] @ OOPListToList lst.Tail
+    | :? NonEmptyList<'value> as lst -> lst.Head :: OOPListToList lst.Tail
 
 let rec listToOOPList lst : OOPList<'value> =
     match lst with
