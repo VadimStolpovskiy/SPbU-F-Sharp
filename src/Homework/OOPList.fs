@@ -37,13 +37,13 @@ let rec listToOOPList lst : OOPList<'value> =
     | [] -> EmptyList()
     | hd :: tl -> NonEmptyList(hd, listToOOPList tl)
 
-let rec partition (lst: OOPList<'value>) pivot =
+let rec partition predicate (lst: OOPList<'value>) =
     match lst with
     | :? EmptyList<'value> -> EmptyList() :> OOPList<'value>, EmptyList() :> OOPList<'value>
     | :? NonEmptyList<'value> as lst ->
-        let parts = partition lst.Tail pivot
+        let parts = partition predicate lst.Tail
 
-        if lst.Head <= pivot then
+        if predicate lst.Head then
             NonEmptyList(lst.Head, fst parts), snd parts
         else
             fst parts, NonEmptyList(lst.Head, snd parts)

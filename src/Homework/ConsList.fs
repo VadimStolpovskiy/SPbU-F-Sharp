@@ -19,13 +19,13 @@ let rec listToConsList lst =
     | [] -> Empty
     | lst -> Cons(List.head lst, listToConsList (List.tail lst))
 
-let rec partition lst pivot =
+let rec partition predicate lst =
     match lst with
     | Empty -> Empty, Empty
     | Cons(hd, tl) ->
-        let parts = partition tl pivot
+        let parts = partition predicate tl
 
-        if hd < pivot then
+        if predicate hd then
             Cons(hd, fst parts), snd parts
         else
             fst parts, Cons(hd, snd parts)

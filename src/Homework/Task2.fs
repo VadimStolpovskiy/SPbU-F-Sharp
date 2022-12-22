@@ -53,7 +53,7 @@ let consQuickSort lst =
         | Empty -> Empty
         | Cons(hd, Empty) -> Cons(hd, Empty)
         | Cons(hd, tl) ->
-            let parts = ConsList.partition tl hd
+            let parts = ConsList.partition (fun elem -> elem < hd) tl
             ConsList.concat (sort (fst parts)) (Cons(hd, sort (snd parts)))
 
     sort lst
@@ -70,7 +70,7 @@ let OOPQuickSort lst =
                 let hd = getHead lst.Tail
                 let tl = getTail lst.Tail
 
-                let parts = partition (NonEmptyList(hd, tl)) lst.Head
+                let parts = partition (fun elem -> elem < lst.Head) (NonEmptyList(hd, tl))
                 OOPList.concat (sort (fst parts)) (NonEmptyList(lst.Head, sort (snd parts)))
 
     sort lst
