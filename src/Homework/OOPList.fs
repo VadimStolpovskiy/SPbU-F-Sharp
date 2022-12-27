@@ -41,12 +41,12 @@ let rec partition predicate (lst: OOPList<'value>) =
     match lst with
     | :? EmptyList<'value> -> EmptyList() :> OOPList<'value>, EmptyList() :> OOPList<'value>
     | :? NonEmptyList<'value> as lst ->
-        let parts = partition predicate lst.Tail
+        let left, right = partition predicate lst.Tail
 
         if predicate lst.Head then
-            NonEmptyList(lst.Head, fst parts), snd parts
+            NonEmptyList(lst.Head, left), right
         else
-            fst parts, NonEmptyList(lst.Head, snd parts)
+            left, NonEmptyList(lst.Head, right)
 
 // №3. Concatenation
 let rec concat (lst1: OOPList<'value>) (lst2: OOPList<'value>) : OOPList<'value> =

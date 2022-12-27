@@ -23,12 +23,12 @@ let rec partition predicate lst =
     match lst with
     | Empty -> Empty, Empty
     | Cons(hd, tl) ->
-        let parts = partition predicate tl
+        let left, right = partition predicate tl
 
         if predicate hd then
-            Cons(hd, fst parts), snd parts
+            Cons(hd, left), right
         else
-            fst parts, Cons(hd, snd parts)
+            left, Cons(hd, right)
 
 // №3. Concatenation
 let rec concat lst1 lst2 =
