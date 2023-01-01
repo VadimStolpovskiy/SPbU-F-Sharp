@@ -19,6 +19,7 @@
         <Compile Include="ConsList.fs" />
         <Compile Include="OOPList.fs" />
         <Compile Include="Task2.fs" />
+        <Compile Include="Tree.fs" />
     </ItemGroup>
     <ItemGroup>
       <PackageReference Include="Expecto.FsCheck" Version="9.0.4" />
