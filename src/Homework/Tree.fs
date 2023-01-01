@@ -26,6 +26,10 @@ let countDistinct tree =
     result.Count
 
 // №3. A function that compiles a ConsList containing all values from all nodes
-let toConsList tree =
-    let add lst hd = Cons(hd, lst)
-    fold add Empty tree
+let toConsListToRoot tree =
+    let prefix lst hd = Cons(hd, lst)
+    fold prefix Empty tree
+
+let toConsListFromRoot tree =
+    let suffix lst hd = concat lst (Cons(hd, Empty))
+    fold suffix Empty tree
