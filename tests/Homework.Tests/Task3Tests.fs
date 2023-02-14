@@ -103,4 +103,18 @@ module TestCases =
                     let consFold = ConsList.fold (*) acc (toConsListToRoot tree)
 
                     treeFold = consFold
+
+                testProperty "Tree.foldBack and ConsList.foldBack should work the same way (+)"
+                <| fun tree acc ->
+                    let treeFoldBack = Tree.foldBack (+) acc tree
+                    let consFoldBack = ConsList.foldBack (+) acc (toConsListToRoot tree)
+
+                    treeFoldBack = consFoldBack
+
+                testProperty "Tree.foldBack and ConsList.foldBack should work the same way (*)"
+                <| fun tree acc ->
+                    let treeFoldBack = Tree.foldBack (*) acc tree
+                    let consFoldBack = ConsList.foldBack (*) acc (toConsListToRoot tree)
+
+                    treeFoldBack = consFoldBack
             ]

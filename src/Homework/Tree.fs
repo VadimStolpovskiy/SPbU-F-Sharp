@@ -15,6 +15,20 @@ let rec fold folder acc tree =
     | Leaf value -> folder acc value
     | Node(value, children) -> ConsList.fold f (folder acc value) children
 
+let foldBack folder acc tree =
+
+    let rec fold acc tree =
+        match tree with
+        | Leaf value ->
+            let acc' inner = folder (acc inner) value
+            acc'
+        | Node(value, children) ->
+            let acc' inner =  ConsList.foldBack (fold acc) inner children
+            let acc'' inner = folder (acc' inner) value
+            acc''
+
+    fold id tree acc
+
 // №2. A function that counts the number of different elements stored in nodes
 let countDistinct tree =
     let add (set: HashSet<'value>) value =
