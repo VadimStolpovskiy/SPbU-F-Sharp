@@ -31,11 +31,9 @@ let rec partition predicate lst =
             left, Cons(hd, right)
 
 let rec fold folder acc lst =
-    let f = fold folder
-
     match lst with
     | Empty -> acc
-    | Cons (hd, tl) -> f (folder acc hd) tl
+    | Cons(hd, tl) -> fold folder (folder acc hd) tl
 
 let rec foldBack folder acc lst =
     match lst with

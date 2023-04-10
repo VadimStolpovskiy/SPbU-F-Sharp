@@ -9,11 +9,9 @@ type Tree<'value> =
     | Leaf of value: 'value
 
 let rec fold folder acc tree =
-    let f = fold folder
-
     match tree with
-    | Leaf value -> folder acc value
-    | Node(value, children) -> ConsList.fold f (folder acc value) children
+    | Leaf value -> folder value acc
+    | Node(value, children) -> ConsList.fold (fold folder) (folder value acc) children
 
 let foldBack folder acc tree =
 
@@ -31,19 +29,14 @@ let foldBack folder acc tree =
 
 // №2. A function that counts the number of different elements stored in nodes
 let countDistinct tree =
-    let add (set: HashSet<'value>) value =
-        set.Add value
-        set
-
-    let set = HashSet<'value>()
-    let result = fold add set tree
+    let result = fold Set.add Set.empty tree
     result.Count
 
 // №3. A function that compiles a ConsList containing all values from all nodes
 let toConsListToRoot tree =
-    let prefix lst hd = Cons(hd, lst)
+    let prefix hd lst = Cons(hd, lst)
     fold prefix Empty tree
 
 let toConsListFromRoot tree =
-    let suffix lst hd = concat lst (Cons(hd, Empty))
+    let suffix hd lst = concat lst (Cons(hd, Empty))
     fold suffix Empty tree

@@ -66,19 +66,19 @@ module TestCases =
                     Expect.equal actual2 expected "Conversion or counting of distinct elements did not go as expected"
 
                 testProperty "Number of distinct elements in a tree should be <= number of all elements (To root)"
-                <| fun tree ->
+                <| fun (tree: Tree<int>) ->
                     let lst = toConsListToRoot tree
                     let cnt = countDistinct tree
                     cnt <= getLength lst
 
                 testProperty "Number of distinct elements in a tree should be <= number of all elements (From root)"
-                <| fun tree ->
+                <| fun (tree: Tree<int>) ->
                     let lst = toConsListFromRoot tree
                     let cnt = countDistinct tree
                     cnt <= getLength lst
 
                 testProperty "Number of distinct elements in a tree should be <= 1"
-                <| fun tree ->
+                <| fun (tree: Tree<int>) ->
                     let cnt = countDistinct tree
                     1 <= cnt
 
