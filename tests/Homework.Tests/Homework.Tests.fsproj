@@ -12,6 +12,7 @@
         <Compile Include="AssemblyInfo.fs" />
         <Compile Include="Task1Tests.fs" />
         <Compile Include="Task2Tests.fs" />
+        <Compile Include="Task3Tests.fs" />
         <Compile Include="Main.fs" />
     </ItemGroup>
     <ItemGroup>

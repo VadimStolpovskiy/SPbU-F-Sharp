@@ -30,6 +30,16 @@ let rec partition predicate lst =
         else
             left, Cons(hd, right)
 
+let rec fold folder acc lst =
+    match lst with
+    | Empty -> acc
+    | Cons(hd, tl) -> fold folder (folder acc hd) tl
+
+let rec foldBack folder acc lst =
+    match lst with
+    | Empty -> acc
+    | Cons(hd, tl) -> folder hd (foldBack folder acc tl)
+
 // №3. Concatenation
 let rec concat lst1 lst2 =
     match lst1 with
